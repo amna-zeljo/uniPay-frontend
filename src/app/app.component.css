@@ -1,0 +1,36 @@
+.app-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .nav-links {
+    display: flex;
+    background-color: #f0f0f0;
+    padding: 15px;
+    justify-content: center;
+    gap: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-links a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-links a.active {
+    background-color: #2563eb;
+    color: white;
+  }
+  
+  .nav-links a:hover:not(.active) {
+    background-color: #e5e7eb;
+  }
+  
+  router-outlet {
+    flex: 1;
+  }

@@ -6,7 +6,8 @@
         <div class="tab-content">
           <h3>Your UniPay Account</h3>
           <div class="qr-code">
-            <img src="assets/images/qr-placeholder.png" alt="QR Code">
+            <!-- Fix: alternative idea is using a direct URL for testing purposes -->
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=USR001" alt="QR Code">
           </div>
           <p class="user-id">#USR001</p>
           
@@ -18,7 +19,7 @@
             
             <div class="balance-item">
               <span class="label">SUBSCRIPTION POINTS:</span>
-              <span class="value">25</span>
+              <span class="value">25 POINTS</span>
             </div>
           </div>
         </div>
@@ -70,18 +71,18 @@
       }
     </div>
     
-    <!-- Bottom navigation -->
+    <!-- Updates: the bottom navigation with proper icons -->
     <div class="bottom-nav">
       <button class="nav-btn" [class.active]="activeTab === 'home'" (click)="setActiveTab('home')">
-        <i class="fas fa-home"></i>
+        <i class="fas fa-wallet"></i>
         <span>Home</span>
       </button>
       <button class="nav-btn" [class.active]="activeTab === 'transactions'" (click)="setActiveTab('transactions')">
-        <i class="fas fa-list"></i>
+        <i class="fas fa-chart-line"></i>
         <span>Transactions</span>
       </button>
       <button class="nav-btn" [class.active]="activeTab === 'topup'" (click)="setActiveTab('topup')">
-        <i class="fas fa-plus-circle"></i>
+        <i class="fas fa-utensils"></i>
         <span>Top Up</span>
       </button>
     </div>
