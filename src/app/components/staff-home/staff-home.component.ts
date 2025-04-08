@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-staff-home',
   standalone: true,
-  imports: [CommonModule, FormsModule],  // Make sure these imports are here
+  imports: [CommonModule, FormsModule],  // Make sure these imports are here -- this is something I forgot before
   templateUrl: './staff-home.component.html',
   styleUrls: ['./staff-home.component.css']
 })
