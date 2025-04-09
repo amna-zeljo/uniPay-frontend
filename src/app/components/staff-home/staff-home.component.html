@@ -1,0 +1,97 @@
+<div class="staff-portal">
+  <header class="portal-header">
+    <h1>STAFF PORTAL</h1>
+  </header>
+  
+  <div class="tab-buttons">
+    <button 
+      class="tab-btn" 
+      [class.active]="activeTab === 'scan'" 
+      (click)="setActiveTab('scan')">
+      <i class="fas fa-qrcode"></i>
+    </button>
+    <button 
+      class="tab-btn" 
+      [class.active]="activeTab === 'input'" 
+      (click)="setActiveTab('input')">
+      <i class="fas fa-keyboard"></i>
+    </button>
+  </div>
+  
+  <div class="content-area">
+    <!-- Scan QR Tab -->
+    @if (activeTab === 'scan') {
+      <div class="tab-content">
+        <h2>Scan Customer's QR:</h2>
+        
+        <div class="scan-area" (click)="simulateScan()">
+          <div class="scan-frame">
+            <div class="scan-corners"></div>
+          </div>
+          <p class="scan-instruction">Tap to simulate scanning...</p>
+        </div>
+        
+        @if (showUserInfo) {
+          <div class="user-info">
+            <p class="user-id">#USR001</p>
+            <div class="balance-display">
+              <div class="balance-item">
+                <span class="label">BALANCE:</span>
+                <span class="value">100.50 BAM</span>
+              </div>
+              
+              <div class="balance-item">
+                <span class="label">SUBSCRIPTION POINTS:</span>
+                <span class="value">50 POINTS</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+    
+    <!-- Input ID Tab -->
+    @if (activeTab === 'input') {
+      <div class="tab-content">
+        <h2>Input Customer's UID:</h2>
+        
+        <div class="input-area">
+          <input 
+            type="text" 
+            [(ngModel)]="searchUserId" 
+            placeholder="Enter customer ID"
+            class="user-id-input">
+          <button class="search-btn" (click)="searchUser()">Search</button>
+        </div>
+        
+        @if (searchError) {
+          <div class="error-message">
+            {{searchError}}
+          </div>
+        }
+        
+        @if (showUserInfo) {
+          <div class="user-info">
+            <p class="user-id">#{{searchUserId || 'USR002'}}</p>
+            <div class="balance-display">
+              <div class="balance-item">
+                <span class="label">BALANCE:</span>
+                <span class="value">200.75 BAM</span>
+              </div>
+              <div class="balance-item">
+                <span class="label">SUBSCRIPTION POINTS:</span>
+                <span class="value">150 POINTS</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+  
+  <footer class="portal-footer">
+    <button class="action-btn">
+      <i class="fas fa-cash-register"></i>
+    </button>
+  </footer>
+</div>
