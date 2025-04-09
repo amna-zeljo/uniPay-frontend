@@ -1,0 +1,31 @@
+<div class="menu-container">
+  <header class="menu-header">
+    <h1>SSST MENU</h1>
+  </header>
+
+  <div class="menu-content">
+    <div class="menu-item" *ngFor="let item of menuItems">
+      <div class="item-details">
+        <h2>{{item.name}}</h2>
+        <p class="description">{{item.description}}</p>
+        <p class="price">Price: ${{item.price}}</p>
+      </div>
+      <div class="item-image">
+        <img [src]="item.image" [alt]="item.name">
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <div class="nav-item">
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="nav-item">
+      <i class="fas fa-wallet"></i>
+    </div>
+    <div class="nav-item">
+      <i class="fas fa-utensils"></i>
+    </div>
+  </nav>
+</div>
+
