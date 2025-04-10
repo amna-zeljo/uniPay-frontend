@@ -1,0 +1,47 @@
+
+<div class="login-container">
+  <div class="login-box">
+    <div class="logo-section">
+      <img src="/assets/ssstlogo.jpg" alt="SSST Logo" class="logo">
+      <h1>Sarajevo School of<br>Science and Technology</h1>
+    </div>
+
+    <h2>LOGIN</h2>
+
+    <form>
+      <div class="form-group">
+        <label for="email">EMAIL</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="user@stu.ssst.edu.ba"
+          [class.error]="isFieldInvalid('email')">
+      </div>
+
+      <div class="form-group">
+        <label for="password">PASSWORD</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="*****"
+          [class.error]="isFieldInvalid('password')">
+      </div>
+
+      <div class="forgot-password">
+        <a href="#">Forgot password</a>
+      </div>
+
+      <button type="submit" class="login-button">
+        Login
+      </button>
+
+      <div class="register-link">
+        Don't have an account yet? <a routerLink="/signup" class="register">REGISTER</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+
