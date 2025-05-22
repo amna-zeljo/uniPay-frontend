@@ -1,14 +1,11 @@
 import { Routes } from '@angular/router';
+import { CustomerHomeComponent } from './components/customer-home/customer-home.component';
+import { CustomerTopupComponent } from './components/customer-topup/customer-topup.component';
+import { StaffHomeComponent } from './components/staff-home/staff-home.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/customer', pathMatch: 'full' },
-  { 
-    path: 'staff', 
-    loadComponent: () => import('./components/staff-home/staff-home.component').then(m => m.StaffHomeComponent) 
-  },
-  { 
-    path: 'customer', 
-    loadComponent: () => import('./components/customer-home/customer-home.component').then(m => m.CustomerHomeComponent) 
-  },
-  { path: '**', redirectTo: '/customer' }
+  { path: '', redirectTo: 'customer', pathMatch: 'full' },
+  { path: 'customer', component: CustomerHomeComponent },
+  { path: 'customer/topup', component: CustomerTopupComponent },
+  { path: 'staff', component: StaffHomeComponent }
 ];

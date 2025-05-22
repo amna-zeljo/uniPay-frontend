@@ -1,89 +1,59 @@
-<div class="customer-home">
-  <!-- Main content area -->
-  <div class="content-area">
-    <!-- Home tab content -->
-    @if (activeTab === 'home') {
-      <div class="tab-content">
-        <h3>Your UniPay Account</h3>
-        <div class="qr-code">
-          <!-- Fix: alternative idea is using a direct URL for testing purposes -->
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=USR001" alt="QR Code">
-        </div>
-        <p class="user-id">#USR001</p>
-        
-        <div class="balance-display">
-          <div class="balance-item">
-            <span class="label">BALANCE:</span>
-            <span class="value">150.50 BAM</span>
-          </div>
-          
-          <div class="balance-item">
-            <span class="label">SUBSCRIPTION POINTS:</span>
-            <span class="value">25 POINTS</span>
-          </div>
-        </div>
-      </div>
-    }
+<div class="customer-container">
+  <div class="wallet-header">
+    <h2>WALLET</h2>
+  </div>
+
+  <div class="account-section" *ngIf="!loading; else loadingTemplate">
+    <h1>Your UniPay Account</h1>
+    <p class="user-id" *ngIf="customerData">#{{customerData.customer_id}}</p>
     
-    <!-- Transactions tab content -->
-    @if (activeTab === 'transactions') {
-      <div class="tab-content">
-        <h3>Transactions Log</h3>
-        <div class="transactions-list">
-          <div class="transaction-item">
-            <div class="transaction-date">2023-04-15</div>
-            <div class="transaction-desc">Account Top-up</div>
-            <div class="transaction-amount positive">+50.00 BAM</div>
-          </div>
-          <div class="transaction-item">
-            <div class="transaction-date">2023-04-16</div>
-            <div class="transaction-desc">Lunch Purchase</div>
-            <div class="transaction-amount negative">-5.75 BAM</div>
-          </div>
-          <div class="transaction-item">
-            <div class="transaction-date">2023-04-18</div>
-            <div class="transaction-desc">Coffee Purchase</div>
-            <div class="transaction-amount negative">-2.50 BAM</div>
-          </div>
-        </div>
-      </div>
-    }
+    <div class="qr-code-container">
+      <img [src]="customerData?.qr_code || 'assets/placeholder-qr.png'" alt="QR Code" class="qr-code">
+    </div>
     
-    <!-- Top-up tab content -->
-    @if (activeTab === 'topup') {
-      <div class="tab-content">
-        <h3>Top Up Your Account</h3>
-        <div class="topup-options">
-          <div class="topup-option">
-            <div class="option-amount">10 BAM</div>
-            <button class="select-btn">Select</button>
-          </div>
-          <div class="topup-option">
-            <div class="option-amount">20 BAM</div>
-            <button class="select-btn">Select</button>
-          </div>
-          <div class="topup-option">
-            <div class="option-amount">50 BAM</div>
-            <button class="select-btn">Select</button>
-          </div>
+    <div class="account-info">
+      <div class="info-item" (click)="navigateToTransactions()">
+        <div class="icon-container">
+          <i class="fas fa-wallet"></i>
+        </div>
+        <div class="info-text">
+          <p class="info-label">BALANCE</p>
+          <p class="info-value">{{customerData?.balance}} BAM</p>
         </div>
       </div>
-    }
+      
+      <div class="info-item">
+        <div class="icon-container">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="info-text">
+          <p class="info-label">SUBSCRIPTION POINTS</p>
+          <p class="info-value">{{customerData?.points}} POINTS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loadingTemplate>
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Loading your account information...</p>
+    </div>
+  </ng-template>
+
+  <div class="bottom-nav">
+    <div class="nav-item" (click)="navigateToTopUp()">
+      <i class="fas fa-chart-line"></i>
+    </div>
+    
+    <div class="nav-item active">
+      <i class="fas fa-wallet"></i>
+    </div>
+    
+    <div class="nav-item" (click)="navigateToMenu()">
+      <i class="fas fa-utensils"></i>
+    </div>
   </div>
   
-  <!-- Updates: the bottom navigation with proper icons -->
-  <div class="bottom-nav">
-    <button class="nav-btn" [class.active]="activeTab === 'home'" (click)="setActiveTab('home')">
-      <i class="fas fa-wallet"></i>
-      <span>Home</span>
-    </button>
-    <button class="nav-btn" [class.active]="activeTab === 'transactions'" (click)="setActiveTab('transactions')">
-      <i class="fas fa-chart-line"></i>
-      <span>Transactions</span>
-    </button>
-    <button class="nav-btn" [class.active]="activeTab === 'topup'" (click)="setActiveTab('topup')">
-      <i class="fas fa-utensils"></i>
-      <span>Top Up</span>
-    </button>
-  </div>
+  <div class="error-message" *ngIf="error">{{ error }}</div>
 </div>
