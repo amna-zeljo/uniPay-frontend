@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router,RouterLink } from '@angular/router';
-import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login-page.component.html',
   imports: [
-    NgOptimizedImage,
     RouterLink
   ],
   styleUrls: ['./login-page.component.css']

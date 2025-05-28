@@ -5,8 +5,8 @@ import { Router,RouterLink } from '@angular/router';
 @Component({
   selector: 'app-signup',
   standalone:true,
-  templateUrl: './signuppage.component.html',
-  styleUrls: ['./signuppage.component.css']
+  templateUrl: './signup-page.component.html',
+  styleUrls: ['./signup-page.component.css']
 })
 export class SignUpPageComponent implements OnInit {
   registerForm: FormGroup;

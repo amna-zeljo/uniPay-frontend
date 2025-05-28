@@ -1,6 +1,7 @@
 <div class="menu-container">
   <header class="menu-header">
     <h1>SSST MENU</h1>
+    <button (click)="this.openAddDialog()">Add</button>
   </header>
 
   <div class="menu-content">
@@ -13,6 +14,8 @@
       <div class="item-image">
         <img [src]="item.image" [alt]="item.name">
       </div>
+      <button (click)="updateItem(item)">Edit</button>
+      <button (click)="deleteItem(item.id)">Delete</button>
     </div>
   </div>
 
