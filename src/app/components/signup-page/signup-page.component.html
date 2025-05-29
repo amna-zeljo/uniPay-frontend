@@ -1,0 +1,44 @@
+<div class="register-container">
+  <div class="register-card">
+    <h1>Create Your UniPay Account</h1>
+    <p class="subtitle">Secure & seamless payments at SSST's canteen</p>
+
+    <form [formGroup]="registerForm">
+      <div class="form-step">
+        <h2>Step 2. Personal Information:</h2>
+
+        <div class="form-group">
+          <input type="text"
+                 formControlName="fullName"
+                 placeholder="Full Name"
+                 [class.invalid]="('fullName')">
+        </div>
+
+        <div class="form-group">
+          <input type="email"
+                 formControlName="email"
+                 placeholder="University Email Address"
+                 [class.invalid]="('email')">
+        </div>
+
+        <div class="form-group">
+          <input type="password"
+                 formControlName="password"
+                 placeholder="Password"
+                 [class.invalid]="('password')">
+        </div>
+
+      </div>
+    </form>
+
+    <div class="button-group">
+      <button class="register-btn" (click)="onSubmit()">
+        Register
+      </button>
+      <button class="refresh-btn">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
