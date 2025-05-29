@@ -47,7 +47,7 @@ export class SignUpPageComponent implements OnInit {
         role: "STAFF"
       }
 
-      this.httpClient.post<User>("http://localhost:8081/register",  user)
+      this.httpClient.post<User>("http://localhost:8080/register",  user)
         .subscribe(newUser =>{
           if(newUser.role=="STAFF"){
             this.router.navigate(["staff"])

@@ -10,7 +10,7 @@ import {MenuComponent} from "./components/menu-page/menu-page.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
-  { path: 'staff', component: StaffHomeComponent }
+  { path: 'staff', component: StaffHomeComponent },
   { path: 'customer', component: CustomerHomeComponent },
     { path: 'customer/topup', component: CustomerTopupComponent },
   {

@@ -12,7 +12,7 @@ export class HomePageService {
 
   //for customer methods
   getCustomerHomePageData(userId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/home/customer/${userId}`);
+    return this.http.get(`${this.apiUrl}/homepage/customer/${userId}`);
   }
 
   getCurrentCustomer(): Observable<any> {
@@ -48,15 +48,15 @@ export class HomePageService {
 
   //for staff methods
   getStaffHomePageData(userId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/home/staff/${userId}`);
+    return this.http.get(`${this.apiUrl}/homepage/staff/${userId}`);
   }
 
   getCurrentStaff(): Observable<any> {
-    //but for now, hardcode user ID 2 for testing
-    return this.getStaffHomePageData(2);
+    //but for now, hardcode user ID 13 for testing
+    return this.getStaffHomePageData(13);
   }
 
   getCustomerById(id: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/home/customer/${id}`);
+    return this.http.get(`${this.apiUrl}/homepage/customer/${id}`);
   }
 }

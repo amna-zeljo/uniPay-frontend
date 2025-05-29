@@ -87,7 +87,6 @@ export class CustomerTopupComponent implements OnInit {
   }
 
   navigateToMenu(): void {
-    //this would navigate to a menu page if implemented
-    alert('Menu feature coming soon');
+    this.router.navigate(['/menuItems']);
   }
 }

@@ -14,11 +14,11 @@ export class CustomerHomeComponent implements OnInit {
   customerData: any = null;
   loading: boolean = true;
   error: string | null = null;
-  
+
   constructor(
     private homePageService: HomePageService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadCustomerData();
@@ -26,7 +26,7 @@ export class CustomerHomeComponent implements OnInit {
 
   loadCustomerData(): void {
     this.loading = true;
-    
+
     this.homePageService.getCurrentCustomer().subscribe({
       next: (data) => {
         this.customerData = data;
@@ -50,7 +50,6 @@ export class CustomerHomeComponent implements OnInit {
   }
 
   navigateToMenu(): void {
-    //and this would navigate to a menu page if implemented
-    alert('Menu feature coming soon');
+    this.router.navigate(['/menuItems']);
   }
 }
