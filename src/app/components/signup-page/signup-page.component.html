@@ -3,7 +3,7 @@
     <h1>Create Your UniPay Account</h1>
     <p class="subtitle">Secure & seamless payments at SSST's canteen</p>
 
-    <form>
+    <form [formGroup]="registerForm">
       <div class="form-step">
         <h2>Step 2. Personal Information:</h2>
 
@@ -28,15 +28,17 @@
                  [class.invalid]="('password')">
         </div>
 
-        <div class="button-group">
-          <button type="submit" class="register-btn">
-            Register
-          </button>
-          <button type="button" class="refresh-btn">
-            <i class="fas fa-sync-alt"></i>
-          </button>
-        </div>
       </div>
     </form>
+
+    <div class="button-group">
+      <button class="register-btn" (click)="onSubmit()">
+        Register
+      </button>
+      <button class="refresh-btn">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+    </div>
+
   </div>
 </div>
