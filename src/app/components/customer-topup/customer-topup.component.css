@@ -1,0 +1,212 @@
+.topup-container {
+  height: 100vh;
+  background-color: #2563eb; 
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.topup-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.topup-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.account-info-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.info-item {
+  text-align: center;
+}
+
+.info-label {
+  font-size: 12px;
+  margin: 0;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.info-value {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 5px 0 0;
+}
+
+.subscription-section {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.subscription-section h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.meal-plans {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.meal-plan-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.meal-plan-card.selected {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.plan-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.plan-header h3 {
+  font-size: 28px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.plan-header p {
+  font-size: 14px;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.plan-description {
+  font-size: 14px;
+  margin-bottom: 15px;
+  min-height: 60px;
+}
+
+.plan-price {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.top-up-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.top-up-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.instructions-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.instructions-card {
+  background-color: white;
+  color: #333;
+  border-radius: 15px;
+  padding: 25px;
+  width: 80%;
+  max-width: 400px;
+}
+
+.instructions-card h3 {
+  color: #2563eb;
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.instructions-card ol {
+  padding-left: 20px;
+}
+
+.instructions-card li {
+  margin-bottom: 10px;
+}
+
+.close-button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+.nav-item {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.error-message {
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: rgba(239, 68, 68, 0.9);
+  padding: 10px;
+  font-size: 14px;
+}

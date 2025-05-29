@@ -2,6 +2,11 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+router-outlet {
+  flex: 1;
 }
 
 .nav-links {
@@ -29,8 +34,4 @@
 
 .nav-links a:hover:not(.active) {
   background-color: #e5e7eb;
-}
-
-router-outlet {
-  flex: 1;
 }

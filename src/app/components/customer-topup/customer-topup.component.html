@@ -1,0 +1,73 @@
+<div class="topup-container">
+  <div class="topup-header">
+    <h2>TOP UP</h2>
+  </div>
+
+  <div class="account-info-bar" *ngIf="!loading">
+    <div class="info-item">
+      <p class="info-label">BALANCE</p>
+      <p class="info-value">{{customerData?.balance}} BAM</p>
+    </div>
+    
+    <div class="info-item">
+      <p class="info-label">SUBSCRIPTION POINTS</p>
+      <p class="info-value">{{customerData?.points}} POINTS</p>
+    </div>
+  </div>
+
+  <div class="subscription-section">
+    <h2>Subscribe to Our Meal Plans:</h2>
+    
+    <div class="meal-plans">
+      <div 
+        *ngFor="let plan of mealPlans" 
+        class="meal-plan-card" 
+        [class.selected]="selectedPlan?.id === plan.id"
+        (click)="selectPlan(plan)"
+      >
+        <div class="plan-header">
+          <h3>{{plan.meals}}</h3>
+          <p>meals/month</p>
+        </div>
+        <div class="plan-description">
+          <p>{{plan.description}}</p>
+        </div>
+        <div class="plan-price">
+          <p>{{plan.price}} BAM</p>
+        </div>
+        <button class="top-up-button" (click)="topUp(); $event.stopPropagation()">TOP UP</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="instructions-overlay" *ngIf="showInstructions">
+    <div class="instructions-card">
+      <h3>Top Up Instructions</h3>
+      <p>To add funds for the {{selectedPlan?.name}}:</p>
+      <ol>
+        <li>Visit the campus canteen cashier</li>
+        <li>Show your UniPay QR code</li>
+        <li>Pay the required amount in cash</li>
+        <li>Your Balance will be updated immediately</li>
+        <li>Enjoy your meals at SSST University!</li>
+      </ol>
+      <button class="close-button" (click)="showInstructions = false">Close</button>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <div class="nav-item active">
+      <i class="fas fa-chart-line"></i>
+    </div>
+    
+    <div class="nav-item" (click)="navigateToHome()">
+      <i class="fas fa-wallet"></i>
+    </div>
+    
+    <div class="nav-item" (click)="navigateToMenu()">
+      <i class="fas fa-utensils"></i>
+    </div>
+  </div>
+  
+  <div class="error-message" *ngIf="error">{{ error }}</div>
+</div>

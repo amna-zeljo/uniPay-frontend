@@ -48,14 +48,14 @@ this.fetchData()
   }
 
   deleteItem(id:number) {
-    this.httpclient.delete("http://localhost:8081/product/" + id, {}).subscribe(() => {
+    this.httpclient.delete("http://localhost:8080/product/" + id, {}).subscribe(() => {
       this.fetchData()
     })
 
 
   }
   fetchData(){
-    this.httpclient.get<Product[]>("http://localhost:8081/product").subscribe(data => {
+    this.httpclient.get<Product[]>("http://localhost:8080/product").subscribe(data => {
       this.menuItems = data;
     })
   }
@@ -78,7 +78,7 @@ this.fetchData()
           available:true
         }
 
-        this.httpclient.post<Product>("http://localhost:8081/product", product)
+        this.httpclient.post<Product>("http://localhost:8080/product", product)
           .subscribe(newProduct => {
             this.menuItems.push(newProduct)
           })
@@ -110,7 +110,7 @@ this.fetchData()
           available:true
         }
 
-        this.httpclient.put<Product>("http://localhost:8081/product", updateProduct)
+        this.httpclient.put<Product>("http://localhost:8080/product", updateProduct)
           .subscribe(newProduct => {
             this.fetchData()
           })

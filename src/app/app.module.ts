@@ -1,27 +1,23 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { CustomerHomeComponent } from './components/customer-home/customer-home.component';
-import {provideHttpClient} from '@angular/common/http';
-
-const routes: Routes = [
-    {path: '', component: CustomerHomeComponent}
-]
+import { routes } from './app.routes';
 
 @NgModule({
-
+  declarations: [
+    //this is empty since AppComponent is standalone
+  ],
   imports: [
     BrowserModule,
-    FormsModule,
-    AppComponent,
-    RouterModule.forRoot(routes),
-    CustomerHomeComponent
+    AppComponent //i will import the standalone component
   ],
   providers: [
-    provideHttpClient()
-  ]
+    provideHttpClient(),
+    provideRouter(routes)
+  ],
+  bootstrap: [AppComponent] //attempted to fix: this is still needed
 })
-export class AppModule { }
+export class AppModule {}
