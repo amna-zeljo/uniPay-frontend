@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForOf} from '@angular/common';
-import {HttpClient, HttpClientModule, provideHttpClient} from '@angular/common/http';
-import {AddMenuItemDialogComponent} from '../add-menu-item/add-menu-item.component';
-import {MatDialog} from '@angular/material/dialog';
-import {MatButton, MatButtonModule} from '@angular/material/button';
+import { NgForOf } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AddMenuItemDialogComponent } from '../add-menu-item/add-menu-item.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { environment } from '../../../environments/environment';
 
 export interface Product {
-  id:number;
+  id: number;
   name: string;
   description: string;
   price: number;
   image: string;
-  pointsPrice:number;
-  category:string;
-  available:boolean;
+  pointsPrice: number;
+  category: string;
+  available: boolean;
 }
 
 @Component({
@@ -30,32 +31,32 @@ export interface Product {
 export class MenuComponent implements OnInit {
   menuItems: Product[] = [];
 
-  constructor(protected httpclient:HttpClient,
-              protected dialog:MatDialog) {
+  constructor(protected httpclient: HttpClient,
+    protected dialog: MatDialog) {
 
   }
+
+  private apiUrl = environment.apiUrl;
 
   ngOnInit(): void {
 
-this.fetchData()
+    this.fetchData()
   }
 
   addItem() {
-    /*this.httpclient.post("http://localhost:8080/menuItem", {}).subscribe(() => {
-    })
-    this.fetchData()*/
+
 
   }
 
-  deleteItem(id:number) {
-    this.httpclient.delete("http://localhost:8080/product/" + id, {}).subscribe(() => {
+  deleteItem(id: number) {
+    this.httpclient.delete(`${this.apiUrl}/product/` + id, {}).subscribe(() => {
       this.fetchData()
     })
 
 
   }
-  fetchData(){
-    this.httpclient.get<Product[]>("http://localhost:8080/product").subscribe(data => {
+  fetchData() {
+    this.httpclient.get<Product[]>(`${this.apiUrl}/product`).subscribe(data => {
       this.menuItems = data;
     })
   }
@@ -67,18 +68,18 @@ this.fetchData()
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('New Menu Item:', result);
-        const product:Product={
+        const product: Product = {
           id: -1,
-          name:result.name,
-          category:result.category,
-          description:result.description,
-          price:result.price,
-          pointsPrice:result.pointsPrice,
-          image:"",
-          available:true
+          name: result.name,
+          category: result.category,
+          description: result.description,
+          price: result.price,
+          pointsPrice: result.pointsPrice,
+          image: "",
+          available: true
         }
 
-        this.httpclient.post<Product>("http://localhost:8080/product", product)
+        this.httpclient.post<Product>(`${this.apiUrl}/product`, product)
           .subscribe(newProduct => {
             this.menuItems.push(newProduct)
           })
@@ -90,7 +91,7 @@ this.fetchData()
 
 
 
-  updateItem(product:Product) {
+  updateItem(product: Product) {
 
     const dialogRef = this.dialog.open(AddMenuItemDialogComponent, {
       width: '400px',
@@ -99,18 +100,18 @@ this.fetchData()
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const updateProduct:Product={
+        const updateProduct: Product = {
           id: product.id,
-          name:result.name,
-          category:result.category,
-          description:result.description,
-          price:result.price,
-          pointsPrice:result.pointsPrice,
-          image:"",
-          available:true
+          name: result.name,
+          category: result.category,
+          description: result.description,
+          price: result.price,
+          pointsPrice: result.pointsPrice,
+          image: "",
+          available: true
         }
 
-        this.httpclient.put<Product>("http://localhost:8080/product", updateProduct)
+        this.httpclient.put<Product>(`${this.apiUrl}/product`, updateProduct)
           .subscribe(newProduct => {
             this.fetchData()
           })
