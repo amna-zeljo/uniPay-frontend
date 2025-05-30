@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HomePageService } from '../../services/home-page.service';
+import { QRCodeComponent } from 'angularx-qrcode';
 
 @Component({
   selector: 'app-customer-home',
   templateUrl: './customer-home.component.html',
   styleUrls: ['./customer-home.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [
+    CommonModule,
+    QRCodeComponent, // <-- for qr code to be implemented via package
+  ]
 })
 export class CustomerHomeComponent implements OnInit {
   customerData: any = null;
@@ -30,6 +34,7 @@ export class CustomerHomeComponent implements OnInit {
     this.homePageService.getCurrentCustomer().subscribe({
       next: (data) => {
         this.customerData = data;
+        console.log(this.customerData)
         this.loading = false;
       },
       error: (err) => {
