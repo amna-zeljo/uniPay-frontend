@@ -6,11 +6,11 @@
   <div class="account-section" *ngIf="!loading; else loadingTemplate">
     <h1>Your UniPay Account</h1>
     <p class="user-id" *ngIf="customerData">#{{customerData.customer_id}}</p>
-    
+
     <div class="qr-code-container">
-      <img [src]="customerData?.qr_code || '/assets/images/qr-placeholder.jpg.png'" alt="QR Code" class="qr-code">
+      <qrcode [qrdata]="'Your data string'" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
     </div>
-    
+
     <div class="account-info">
       <div class="info-item" (click)="navigateToTransactions()">
         <div class="icon-container">
@@ -21,7 +21,7 @@
           <p class="info-value">{{customerData?.balance}} BAM</p>
         </div>
       </div>
-      
+
       <div class="info-item">
         <div class="icon-container">
           <i class="fas fa-star"></i>
@@ -45,15 +45,15 @@
     <div class="nav-item" (click)="navigateToTopUp()">
       <i class="fas fa-chart-line"></i>
     </div>
-    
+
     <div class="nav-item active">
       <i class="fas fa-wallet"></i>
     </div>
-    
+
     <div class="nav-item" (click)="navigateToMenu()">
       <i class="fas fa-utensils"></i>
     </div>
   </div>
-  
+
   <div class="error-message" *ngIf="error">{{ error }}</div>
 </div>
