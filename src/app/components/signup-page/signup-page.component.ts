@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
-interface User {
+export interface User {
+  id: number,
   username: string,
   email: string,
   password: string,
@@ -20,10 +21,11 @@ interface User {
 })
 export class SignUpPageComponent implements OnInit {
   registerForm: FormGroup;
-
+  role = "";
   constructor(private fb: FormBuilder,
     private httpClient: HttpClient,
-    private router: Router) {
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.registerForm = this.fb.group({
       fullName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
@@ -34,6 +36,11 @@ export class SignUpPageComponent implements OnInit {
   private apiUrl = environment.apiUrl;
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      let role = params['role']
+      if(role !== "user" && role !== "staff") role = "user";
+      this.role = role.toUpperCase();
+    })
   }
 
   isFieldInvalid(fieldName: string): boolean {
@@ -44,14 +51,16 @@ export class SignUpPageComponent implements OnInit {
   onSubmit(): void {
 
     const user: User = {
+      id: -1,
       username: this.registerForm.get("fullName")?.getRawValue(),
       password: this.registerForm.get("password")?.getRawValue(),
       email: this.registerForm.get("email")?.getRawValue(),
-      role: "STAFF"
+      role: this.role
     }
 
     this.httpClient.post<User>(`${this.apiUrl}/register`, user)
       .subscribe(newUser => {
+        localStorage.setItem("userId", newUser.id.toString())
         if (newUser.role == "STAFF") {
           this.router.navigate(["staff"])
         }

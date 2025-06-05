@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {EMPTY, Observable} from 'rxjs';
 import { environment } from '../../environments/environment';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomePageService {
   private apiUrl = environment.apiUrl;
-  
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient,
+              private router: Router) { }
 
   //for customer methods
   getCustomerHomePageData(userId: number): Observable<any> {
@@ -18,7 +20,14 @@ export class HomePageService {
 
   getCurrentCustomer(): Observable<any> {
     //but for now, hardcode user ID 1 for testing
-    return this.getCustomerHomePageData(1);
+    const userId = localStorage.getItem("userId")
+    if(!userId){
+      this.router.navigate(["/"])
+      return EMPTY
+    }else {
+      return this.getCustomerHomePageData(parseInt(userId));
+    }
+
   }
 
   getBalance(): Observable<number> {

@@ -6,14 +6,18 @@
     <div class="step-section">
       <h2>Step 1. Choose Your Role:</h2>
 
-      <div routerLink="/login" class="role-buttons">
-        <button routerLink="/login" class="role-button">
+      <div  class="role-buttons">
+        <a routerLink="/register" [queryParams]="{role: 'staff'}" >
+        <button  class="role-button">
           Canteen Staff
         </button>
+        </a>
 
-        <button routerLink="/login" class="role-button">
+        <a routerLink="/register" [queryParams]="{role: 'user'}" >
+        <button  class="role-button">
           Customers
         </button>
+        </a>
 
       </div>
     </div>

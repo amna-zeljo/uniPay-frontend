@@ -8,7 +8,7 @@
     <p class="user-id" *ngIf="customerData">{{customerData.firstName}} {{customerData.lastName}} #{{customerData.userId}}</p>
 
     <div class="qr-code-container">
-      <qrcode [qrdata]="'Your data string'" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+      <qrcode [qrdata]="generateQrCodeUrl()" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
     </div>
 
     <div class="account-info">

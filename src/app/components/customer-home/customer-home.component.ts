@@ -57,4 +57,8 @@ export class CustomerHomeComponent implements OnInit {
   navigateToMenu(): void {
     this.router.navigate(['/menuItems']);
   }
+
+  generateQrCodeUrl(){
+    return "http://localhost:4200/customer/" + this.customerData.userId
+  }
 }
