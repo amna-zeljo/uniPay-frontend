@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HomePageService } from '../../services/home-page.service';
 
+
 @Component({
   selector: 'app-staff-home',
   templateUrl: './staff-home.component.html',
@@ -17,7 +18,7 @@ export class StaffHomeComponent implements OnInit {
   customerInfo: any = null;
   loading: boolean = true;
   error: string | null = null;
-  
+
   constructor(private homePageService: HomePageService) {}
 
   ngOnInit(): void {
@@ -26,7 +27,7 @@ export class StaffHomeComponent implements OnInit {
 
   loadStaffData(): void {
     this.loading = true;
-    
+
     this.homePageService.getCurrentStaff().subscribe({
       next: (data) => {
         this.staffData = data;
@@ -58,10 +59,10 @@ export class StaffHomeComponent implements OnInit {
       this.error = 'Please enter a customer ID';
       return;
     }
-    
+
     this.loading = true;
     this.error = null;
-    
+
     this.homePageService.getCustomerById(this.customerId).subscribe({
       next: (data) => {
         this.customerInfo = data;
