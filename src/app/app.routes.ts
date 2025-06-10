@@ -26,6 +26,10 @@ export const routes: Routes = [
     component: MenuComponent
   },
   {
+    path: 'transactions',
+    loadComponent: () => import('./components/transactions/transactions.component').then(m => m.TransactionsComponent)
+  },
+  {
     path: 'login',
     loadComponent: () => import('./components/login-page/login-page.component').then(m => m.LoginPageComponent)
   },
