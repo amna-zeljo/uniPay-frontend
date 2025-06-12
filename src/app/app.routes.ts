@@ -26,7 +26,7 @@ export const routes: Routes = [
     component: MenuComponent
   },
   {
-    path: 'transactions',
+    path: 'customer/transactions',
     loadComponent: () => import('./components/transactions/transactions.component').then(m => m.TransactionsComponent)
   },
   {
