@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TransactionService } from '../../services/transaction.service';
 import { Transaction } from '../../models/transaction.model';
+import { TransactionService } from '../../services/transaction.service';
 
 @Component({
   selector: 'app-transactions',
@@ -24,11 +24,11 @@ export class TransactionsComponent implements OnInit {
   loadTransactions(): void {
     this.loading = true;
     this.transactionService.getTransactions().subscribe({
-      next: (data) => {
+      next: (data: Transaction[]) => {
         this.transactions = data;
         this.loading = false;
       },
-      error: (err) => {
+      error: (err: any) => {
         this.error = 'Failed to load transactions';
         this.loading = false;
         console.error(err);

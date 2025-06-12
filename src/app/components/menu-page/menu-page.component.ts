@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AddMenuItemDialogComponent } from '../add-menu-item/add-menu-item.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { environment } from '../../../environments/environment';
+import { TransactionService } from '../../services/transaction.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface Product {
   id: number;
@@ -32,15 +34,22 @@ export class MenuComponent implements OnInit {
   menuItems: Product[] = [];
 
   constructor(protected httpclient: HttpClient,
-    protected dialog: MatDialog) {
+              protected dialog: MatDialog,
+              protected transactionService: TransactionService) {
 
   }
+
+  userId = "";
+  private _snackBar = inject(MatSnackBar);
 
   private apiUrl = environment.apiUrl;
 
   ngOnInit(): void {
 
     this.fetchData()
+    this.userId = localStorage.getItem("userId") || "";
+    console.log("Got user ", this.userId)
+
   }
 
   addItem() {
@@ -89,8 +98,6 @@ export class MenuComponent implements OnInit {
     });
   }
 
-
-
   updateItem(product: Product) {
 
     const dialogRef = this.dialog.open(AddMenuItemDialogComponent, {
@@ -122,4 +129,24 @@ export class MenuComponent implements OnInit {
 
 
   }
+
+  buyItem(product: Product) {
+    console.log("buy product")
+    this.transactionService.buyProduct(product.id, this.userId).subscribe({
+
+      next: (response) => {
+        this._snackBar.open('Transaction Finished', '', {
+          duration: 3000,
+          panelClass: ['blue-snackbar']
+        });
+      },
+      error: (err) => {
+        this._snackBar.open('Not enough balance', "", {
+          duration: 3000,
+          panelClass: ['red-snackbar']
+        });
+      }
+    })
+  }
+
 }

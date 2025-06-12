@@ -16,3 +16,13 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
+.blue-snackbar {
+  background: #4169E1;
+  color: white;
+}
+
+.red-snackbar {
+  background: #e44646;
+  color: white;
+}

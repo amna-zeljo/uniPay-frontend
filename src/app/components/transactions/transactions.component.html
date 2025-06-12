@@ -1,6 +1,6 @@
 <div class="transactions-container">
   <h2>Transactions</h2>
-  
+
   <div class="transactions-box" *ngIf="!loading; else loadingTemplate">
     <div class="transaction-header">
       <div class="header-item">Transaction ID</div>
@@ -9,14 +9,14 @@
       <div class="header-item">Date</div>
       <div class="header-item">Description</div>
     </div>
-    
+
     <div class="transaction-row" *ngFor="let transaction of transactions">
       <div class="transaction-item">{{ transaction.id }}</div>
       <div class="transaction-item">{{ transaction.amount }} BAM</div>
       <div class="transaction-item" [ngClass]="{'incoming': transaction.type === 'INCOMING', 'outgoing': transaction.type === 'OUTGOING'}">
         {{ transaction.type }}
       </div>
-      <div class="transaction-item">{{ transaction.timestamp | date:'medium' }}</div>
+      <div class="transaction-item">{{ transaction.transactionDate | date:'medium' }}</div>
       <div class="transaction-item">{{ transaction.description || '-' }}</div>
     </div>
   </div>
@@ -29,4 +29,4 @@
   </ng-template>
 
   <div class="error-message" *ngIf="error">{{ error }}</div>
-</div> 
+</div>

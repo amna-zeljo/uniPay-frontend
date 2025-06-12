@@ -34,6 +34,7 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .item-details {
@@ -92,3 +93,25 @@
 .nav-item:hover {
   color: #2a4db7;
 }
+
+.menu-button {
+  background-color: #4169E1;
+  color: white;
+  border: none;
+  border-radius: 5%;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.inverted-button {
+  background-color: white !important;
+  color: #4169E1;
+}
+
+.purchase-button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
