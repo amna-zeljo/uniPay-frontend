@@ -1,7 +1,7 @@
 <div class="menu-container">
   <header class="menu-header">
     <h1>SSST MENU</h1>
-    <button (click)="this.openAddDialog()">Add</button>
+    <button (click)="this.openAddDialog()" class="menu-button inverted-button">Add</button>
   </header>
 
   <div class="menu-content">
@@ -12,20 +12,28 @@
         <p class="price">Price: ${{item.price}}</p>
       </div>
       <div class="item-image">
-        <img [src]="item.image" [alt]="item.name">
+        <img
+          [src]="getItemImage(item)"
+          [alt]="item.name"
+          (error)="onImageError($event)">
       </div>
-      <button (click)="updateItem(item)">Edit</button>
-      <button (click)="deleteItem(item.id)">Delete</button>
+      <div class="button-group">
+        <button (click)="updateItem(item)" class="menu-button">Edit</button>
+        <button (click)="deleteItem(item.id)" class="menu-button">Delete</button>
+      </div>
+      <button (click)="buyItem(item)" class="menu-button inverted-button purchase-button" [hidden]='userId == ""'>Purchase</button>
     </div>
   </div>
 
   <nav class="bottom-nav">
     <div class="nav-item">
-      <i class="fas fa-search"></i>
+      <a href="/customer/topup">
+        <i class="fas fa-search"></i>
+      </a>
     </div>
     <div class="nav-item">
       <a href="/customer">
-      <i class="fas fa-wallet"></i>
+        <i class="fas fa-wallet"></i>
       </a>
     </div>
     <div class="nav-item">
@@ -33,4 +41,3 @@
     </div>
   </nav>
 </div>
-

@@ -50,8 +50,7 @@ export class CustomerHomeComponent implements OnInit {
   }
 
   navigateToTransactions(): void {
-    //this would navigate to a transactions page if implemented
-    alert('Transaction log feature coming soon');
+    this.router.navigate(['/customer/transactions']);
   }
 
   navigateToMenu(): void {
